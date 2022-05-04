@@ -1,0 +1,13 @@
+version: "3.1"
+
+services:
+  proyectologin_db:
+    image: mysql:5.7
+    ports:
+      - "3312:3306"
+    environment:
+      MYSQL_DATABASE: proyectologin
+      MYSQL_ROOT_USER: proyectologin
+      MYSQL_USER: proyectologin
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_PASSWORD: secret

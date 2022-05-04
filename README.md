@@ -33,4 +33,7 @@ Dar inicio al servidor local
 
 `npm start`
 
-Probar los endpoints con Postman
+Probar los endpoints con Postman y/o con Swagger
+
+## Documentación de la API
+Abrir el archivo `spec.yml` y copiar su contenido en [Swagger](https://editor.swagger.io/) o dirigirse a (http://localhost:3000/api-docs/) en su navegador una vez que halla iniciado el servidor y clonado el proyecto.

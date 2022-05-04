@@ -1,0 +1,81 @@
+openapi: 3.0.1
+title: Sample API
+description: This is a sample server for a login and register.
+termsOfService: http://example.com/terms/
+contact:
+  name: API Support
+  url: http://www.example.com/support
+  email: support@example.com
+license:
+  name: Apache 2.0
+  url: https://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+  - url: http://localhost:3000/
+    description: Development server
+paths:
+  /registro:
+    post:
+      summary: Creates a user.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/newuser'
+      responses: 
+        '201':
+          description: Now you can log in.
+      tags:
+        - newuser
+  /ingresar:
+    post:
+      summary: Initiates user's session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'          
+      responses:
+        '200':
+          description: Token
+        '401':
+          description: Wrong information
+      tags:
+        - User
+        - admin
+  /me:
+    get:
+      security:
+        - bearerAuth: []
+      description: It allows the admin to see detailed information about a user 
+      summary: shows a user
+      responses:
+        '200':
+          description: User
+        '400':
+          description: Invalid token
+        tags:
+          - User
+          - admin
+components:
+  securitySchemes:
+    bearerAuth:            # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    newuser:
+      properties:
+        name: 
+          type: string
+        email: 
+          type: email
+        password: 
+          type: string   
+    User:
+      properties:
+        email:
+          type: string
+        password:
+          type: string    

@@ -19,7 +19,6 @@ function createUserRouter(params) {
             return res.status(201).json(data);
         } catch (error) {
             const msj = error.message
-            console.log(msj);
             res.status(417).send('You need to complete all the information.' + msj);
         }
     });
@@ -36,7 +35,7 @@ function createUserRouter(params) {
             if (mail !== null) {
                 jwt.sign({ mail }, JWT_SECRET, (err, token) => { res.json({ token }) });
             } else {
-                throw new Error('Wrong information');
+                res.status(400).send('Wrong email and/or password');
             }
         } catch (error) {
             res.status(500).send({ message: error.message });
